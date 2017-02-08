@@ -1,0 +1,5 @@
+aws
+terraform.*
+*tfstate*
+**/.terraform/*
+.DS_Store
