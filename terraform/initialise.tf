@@ -2,6 +2,6 @@
 variable "environment" {}
 variable "dns" {}
 variable "worker-name" {}
-variable "master-name" {}
+variable "hub-name" {}
 variable "host_env_file" {}
 variable "jade-secrets-file" {}

@@ -1,16 +1,16 @@
-module "master" {
-  source = "../modules/master"
+module "hub" {
+  source = "../modules/hub"
   host_env_file = "${var.host_env_file}"
   jade-secrets-file = "${var.jade-secrets-file}"
   environment  = "${var.environment}"
-  master-name = "${var.master-name}"
+  hub-name = "${var.hub-name}"
   dns = "${var.dns}"
-  slave_security_group_id = "${module.slave.slave_security_group_id}"
+  worker_security_group_id = "${module.worker.worker_security_group_id}"
 }
 
-module "slave" {
-  source = "../modules/slave"
+module "worker" {
+  source = "../modules/worker"
   worker-name = "${var.worker-name}"
-  master_security_group_id = "${module.master.master_security_group_id}"
-  master_private_ip = "${module.master.private_ip}"
+  hub_security_group_id = "${module.hub.hub_security_group_id}"
+  hub_private_ip = "${module.hub.private_ip}"
 }
