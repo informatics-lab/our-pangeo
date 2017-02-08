@@ -37,20 +37,6 @@ resource "aws_launch_configuration" "notebook-slaves" {
     security_groups = ["default", "${aws_security_group.jadeslave.name}"]
     spot_price = "0.3"
     user_data = "${data.template_file.slave-bootstrap.rendered}"
-
-    # Copies the whole repo to /usr/local/share/jade
-    provisioner "file" {
-      connection {
-        user = "ec2-user"
-        private_key = "${file("~/.ssh/gateway/id_rsa")}"
-        bastion_host = "gateway.informaticslab.co.uk"
-        bastion_private_key = "${file("~/.ssh/id_rsa")}"
-        bastion_user = "ec2-user"
-      }
-      source = "../../"
-      destination = "/usr/local/share/jade"
-    }
-
     root_block_device = {
       volume_size = 20
     }

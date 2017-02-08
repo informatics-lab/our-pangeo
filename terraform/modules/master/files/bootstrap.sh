@@ -24,7 +24,7 @@ chmod +x /usr/local/bin/docker-compose
 usermod -aG docker ec2-user
 
 # get config
-git clone https://github.com/met-office-lab/jade.git /usr/local/share/jade
+git clone https://github.com/met-office-lab/jade-jupyter.git /usr/local/share/jade
 
 # get keys
 aws s3 cp s3://jade-secrets/${jade-secrets-file} /usr/local/share/jade/jade-secrets

@@ -14,21 +14,6 @@ resource "aws_instance" "jademaster" {
   user_data             = "${data.template_file.master-bootstrap.rendered}"
   iam_instance_profile  = "jade-secrets"
   security_groups        = ["default", "${aws_security_group.jademaster.name}"]
-
-  # Copies the whole repo to /usr/local/share/jade
-  provisioner "file" {
-      connection {
-        user = "ec2-user"
-        private_key = "${file("~/.ssh/gateway/id_rsa")}"
-        bastion_host = "gateway.informaticslab.co.uk"
-        bastion_port = "993"
-        bastion_private_key = "${file("~/.ssh/id_rsa")}"
-        bastion_user = "ec2-user"
-      }
-      source = "../../"
-      destination = "/usr/local/share/jade"
-  }
-
   tags = {
     Name = "${var.master-name}"
   }
