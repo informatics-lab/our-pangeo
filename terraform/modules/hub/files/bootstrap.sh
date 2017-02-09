@@ -23,14 +23,6 @@ curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose
 chmod +x /usr/local/bin/docker-compose
 usermod -aG docker ec2-user
 
-# get config
-git clone https://github.com/met-office-lab/jade-jupyter.git /usr/local/share/jade
-
 # get keys
+mkdir /usr/local/share/jade/
 aws s3 cp s3://jade-secrets/${jade-secrets-file} /usr/local/share/jade/jade-secrets
-
-# run config
-
-cat /usr/local/share/jade/jade-secrets /usr/local/share/jade/docker/master/${host_env_file} > /usr/local/share/jade/docker/master/all.env
-
-/usr/local/bin/docker-compose -f /usr/local/share/jade/docker/master/docker-compose.yml up -d

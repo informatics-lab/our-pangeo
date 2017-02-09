@@ -1,7 +1,7 @@
 data "template_file" "hub-bootstrap" {
     template            = "${file("${path.module}/files/bootstrap.sh")}"
     vars = {
-      host_env_file = "${var.host_env_file}"
+      host_env_file = ""
       jade-secrets-file = "${var.jade-secrets-file}"
       environment = "${var.environment}"
     }
@@ -21,6 +21,30 @@ resource "aws_instance" "jadehub" {
   root_block_device = {
     volume_size = 20
   }
+
+  connection {
+    user = "ec2-user"
+    private_key = "${file("~/.ssh/gateway/id_rsa")}"
+    bastion_host = "gateway.informaticslab.co.uk"
+    bastion_port = "993"
+    bastion_private_key = "${file("~/.ssh/id_rsa")}"
+    bastion_user = "ec2-user"
+  }
+
+  # Copies the whole repo to /usr/local/share/jade
+  provisioner "file" {
+      source = "../../docker"
+      destination = "/home/ec2-user/"
+  }
+
+  provisioner "remote-exec" {
+      inline = [
+        "sudo mv /home/ec2-user/docker /usr/local/share/jade/docker",
+        "sudo cat /usr/local/share/jade/jade-secrets /usr/local/share/jade/docker/master/${var.host_env_file} > /usr/local/share/jade/docker/master/all.env",
+        "sudo /usr/local/bin/docker-compose -f /usr/local/share/jade/docker/master/docker-compose.yml up -d"
+      ]
+  }
+
 }
 
 resource "aws_security_group" "jadehub" {
