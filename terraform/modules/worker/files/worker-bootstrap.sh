@@ -23,7 +23,7 @@ echo "OPTIONS=\"--default-ulimit nofile=1024:4096 -H tcp://0.0.0.0:2375 -H unix:
 service docker start
 
 # pull scientific environment image
-docker pull quay.io/informaticslab/asn-serve
+docker pull quay.io/informaticslab/asn-serve:v1.0.1
 
 # run config
 docker run -d --add-host "jupyterhub:${jadehub_private_ip}" swarm join --advertise=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'):2375 consul://jupyterhub:8500
