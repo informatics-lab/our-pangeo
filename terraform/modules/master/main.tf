@@ -8,12 +8,12 @@ data "template_file" "master-bootstrap" {
 }
 
 resource "aws_instance" "jademaster" {
-  ami                   = "ami-f9dd458a"
+  ami                   = "ami-f1949e95"
   instance_type         = "t2.large"
-  key_name              = "gateway"
+  key_name              = "bastion"
   user_data             = "${data.template_file.master-bootstrap.rendered}"
   iam_instance_profile  = "jade-secrets"
-  security_groups        = ["default", "${aws_security_group.jademaster.name}"]
+  security_groups        = ["allow_from_bastion", "${aws_security_group.jademaster.name}"]
   tags = {
     Name = "${var.master-name}"
   }

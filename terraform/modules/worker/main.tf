@@ -30,11 +30,11 @@ resource "aws_security_group_rule" "allow_from_hub" {
 
 resource "aws_launch_configuration" "notebook-workers" {
     name = "${var.worker-name}"
-    image_id = "ami-f9dd458a"
-    instance_type = "m3.xlarge"
-    key_name = "gateway"
+    image_id = "ami-f1949e95"
+    instance_type = "m4.large"
+    key_name = "bastion"
     iam_instance_profile  = "jade-secrets"
-    security_groups = ["default", "${aws_security_group.jadeworker.name}"]
+    security_groups = ["allow_from_bastion", "${aws_security_group.jadeworker.name}"]
     spot_price = "0.3"
     user_data = "${data.template_file.worker-bootstrap.rendered}"
     root_block_device = {
@@ -43,7 +43,7 @@ resource "aws_launch_configuration" "notebook-workers" {
 }
 
 resource "aws_autoscaling_group" "notebook-workers" {
-  availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  availability_zones = ["eu-west-2a", "eu-west-2b"]
   name = "${var.worker-name}s"
   max_size = 1
   min_size = 1
