@@ -16,6 +16,7 @@ resource "aws_instance" "jadehub" {
   security_groups        = ["default", "${aws_security_group.jadehub.name}"]
   tags = {
     Name = "${var.hub-name}"
+    OfficeHours = "false"
   }
 
   root_block_device = {

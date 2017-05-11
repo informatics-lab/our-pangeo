@@ -16,6 +16,7 @@ resource "aws_instance" "jademaster" {
   security_groups        = ["default", "${aws_security_group.jademaster.name}"]
   tags = {
     Name = "${var.master-name}"
+    OfficeHours = "${var.office-hours}"
   }
 
   root_block_device = {

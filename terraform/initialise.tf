@@ -3,5 +3,6 @@ variable "environment" {}
 variable "dns" {}
 variable "worker-name" {}
 variable "hub-name" {}
+variable "office-hours" {}
 variable "host_env_file" {}
 variable "jade-secrets-file" {}
