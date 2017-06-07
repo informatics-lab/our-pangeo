@@ -44,6 +44,8 @@ mysql:
   restart: always
   image: mysql:latest
   env_file: /usr/local/share/jade/jade-secrets
+  environment:
+    MYSQL_DATABASE=jupyter
   volumes:
     - /mnt/jade-notebooks/database/${ENVIRONMENT}:/var/lib/mysql
 
