@@ -3,3 +3,4 @@ terraform.*
 *tfstate*
 **/.terraform/*
 .DS_Store
+kubernetes/helm-config.yaml
