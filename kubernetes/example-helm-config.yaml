@@ -1,0 +1,39 @@
+hub:
+  cookieSecret: "COOKIE_SECRET"
+  extraConfig: |
+    c.JupyterHub.logo_file = 'https://images.informaticslab.co.uk/misc/822630db09e112db715ea5b18d03fa7b.png'
+
+proxy:
+  secretToken: "PROXY_SECRET"
+  service:
+    type: ClusterIP
+
+prePuller:
+  enabled: false
+
+ingress:
+  enabled: true
+  host: jupyterhub.informaticslab.co.uk
+  https:
+    enabled: true
+    type: "kube-lego"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+
+auth:
+  type: github
+  github:
+    clientId: "GITHUB_CLIENT_ID"
+    clientSecret: "GITHUB_CLIENT_SECRET"
+    callbackUrl: "https://jupyterhub.informaticslab.co.uk/hub/oauth_callback"
+
+singleuser:
+  image:
+    name: informaticslab/singleuser-notebook
+    tag: latest
+
+admin:
+  access: true
+  users:
+    - jacobtomlinson
+    - niallrobinson
