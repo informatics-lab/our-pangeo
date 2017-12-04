@@ -26,13 +26,14 @@ Create a new [GitHub oauth application](https://github.com/settings/applications
 Now you can go ahead and run helm.
 
 ```shell
+# Get deps
+helm dependency update jadejupyter
+
 # Install
-helm install jupyterhub/jupyterhub --version=v0.4 --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f kubernetes/helm-config.yaml
+helm install jadejupyter --version=v0.4 --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f kubernetes/helm-config.yaml
 
 # Apply changes
-kubectl --namespace=jupyter scale deployment hub-deployment --replicas=0
-helm upgrade jupyterhub.informaticslab.co.uk jupyterhub/jupyterhub --version=v0.4 -f kubernetes/helm-config.yaml
-kubectl --namespace=jupyter scale deployment hub-deployment --replicas=1
+helm upgrade jupyterhub.informaticslab.co.uk jadejupyter -f helm-config.yaml
 
 # Delete
 helm delete jupyterhub.informaticslab.co.uk --purge
