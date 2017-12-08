@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: prepull
+spec:
+  selector:
+    matchLabels:
+      name: prepull
+  template:
+    metadata:
+      labels:
+        name: prepull
+    spec:
+      initContainers:
+      - name: prepull
+        image: docker
+        command: ["docker", "pull", "{{ .Values.jupyterhub.singleuser.image.name }}:{{ .Values.jupyterhub.singleuser.image.tag }}"]
+        volumeMounts:
+        - name: docker
+          mountPath: /var/run
+      volumes:
+      - name: docker
+        hostPath:
+          path: /var/run
+      containers:
+      - name: pause
+        image: gcr.io/google_containers/pause

@@ -27,3 +27,5 @@ data:
       timeout = "5s"
       username="$INFLUX_DB_INGEST_USER"
       password="$INFLUX_DB_INGEST_PASS"
+
+    [[inputs.cpu]]
