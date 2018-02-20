@@ -1,7 +1,0 @@
-environment = "production"
-dns = "jupyter.informaticslab.co.uk"
-worker-name = "jupyter-worker"
-hub-name = "jupyter-master"
-office-hours = "false"
-host_env_file = "production.env"
-jade-secrets-file = "jade-secrets"

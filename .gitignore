@@ -4,3 +4,6 @@ terraform.*
 **/.terraform/*
 .DS_Store
 kubernetes/helm-config.yaml
+*.lock
+charts/
+helm-config.yaml
