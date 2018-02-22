@@ -9,7 +9,7 @@ First off you need [helm](https://github.com/kubernetes/helm) if you don't have 
 You'll also need to symlink the config from our [private-config](https://github.com/met-office-lab/private-config) repo.
 
 ```shell
-ln -s /path/to/private-config/jade-jupyter/values.yaml values.yaml
+ln -s /path/to/private-config/jade-pangeo/values.yaml values.yaml
 ```
 
 Now you can go ahead and run helm.
