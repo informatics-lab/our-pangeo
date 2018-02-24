@@ -23,7 +23,7 @@ Now you can go ahead and run helm.
 helm dependency update jadejupyter
 
 # Install
-helm install jadejupyter --version=v0.4 --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f values.yaml
+helm install jadejupyter --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f values.yaml
 
 # Apply changes
 helm upgrade jupyterhub.informaticslab.co.uk jadejupyter -f values.yaml

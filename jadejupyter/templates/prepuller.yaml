@@ -2,6 +2,11 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: prepull
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: prepull
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
@@ -10,6 +15,9 @@ spec:
     metadata:
       labels:
         name: prepull
+      annotations:
+        # This lets us autorestart when the image changes!
+        checksum/image: "{{ .Values.jupyterhub.singleuser.image.name }}:{{ .Values.jupyterhub.singleuser.image.tag }}"
     spec:
       initContainers:
       - name: prepull
