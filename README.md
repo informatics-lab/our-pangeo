@@ -20,14 +20,14 @@ Now you can go ahead and run helm.
 
 ```shell
 # Get deps
-helm dependency update jadejupyter
+helm dependency update jadepangeo
 
 # Install
-helm install jadejupyter --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f values.yaml
+helm install jadepangeo --name=pangeo.informaticslab.co.uk --namespace=jupyter -f values.yaml
 
 # Apply changes
-helm upgrade jupyterhub.informaticslab.co.uk jadejupyter -f values.yaml
+helm upgrade pangeo.informaticslab.co.uk jadepangeo -f values.yaml
 
 # Delete
-helm delete jupyterhub.informaticslab.co.uk --purge
+helm delete pangeo.informaticslab.co.uk --purge
 ```
