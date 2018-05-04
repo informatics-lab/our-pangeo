@@ -9,7 +9,7 @@ data:
       restartPolicy: Never
       containers:
         - name: dask-worker
-          image: informaticslab/singleuser-notebook:latest
+          image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
           args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 3GB, --death-timeout, '60']
           resources:
             limits:
