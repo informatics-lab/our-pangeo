@@ -5,19 +5,21 @@ metadata:
 data:
   worker-template.yaml: |-
     metadata:
+      annotations:
+        iam.amazonaws.com/role: "arn:aws:iam::536099501702:role/pangeo"
     spec:
       restartPolicy: Never
       containers:
         - name: dask-worker
           image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
-          args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 3GB, --death-timeout, '60']
+          args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 6GB, --death-timeout, '60']
           resources:
             limits:
               cpu: "1"
-              memory: 3G
+              memory: 6G
             requests:
               cpu: "1"
-              memory: 3G
+              memory: 6G
           volumeMounts:
             - name: s3
               mountPath: /s3
