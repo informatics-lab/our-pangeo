@@ -25,6 +25,8 @@ data:
               mountPath: /s3
             - name: scratch
               mountPath: /scratch
+          nodeSelector:
+            k8s.io/cluster-autoscaler/node-template/label/spot: "true"
       volumes:
         - name: s3
           flexVolume:
