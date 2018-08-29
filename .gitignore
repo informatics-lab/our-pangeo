@@ -6,4 +6,4 @@ terraform.*
 kubernetes/helm-config.yaml
 *.lock
 charts/
-values.yaml
+secrets.yaml

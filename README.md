@@ -13,7 +13,7 @@ You'll also need to symlink the config from our [private-config](https://github.
 _If you're not a member of the Informatics Lab and are looking to set this up yourself then check out the `values.yaml` file and the config for the other dependencies._
 
 ```shell
-ln -s /path/to/private-config/jade-pangeo/values.yaml values.yaml
+ln -s /path/to/private-config/jade-pangeo/secrets.yaml secrets.yaml
 ```
 
 Now you can go ahead and run helm.
@@ -23,11 +23,11 @@ Now you can go ahead and run helm.
 helm dependency update jadepangeo
 
 # Install
-helm install jadepangeo --name=pangeo.informaticslab.co.uk --namespace=jupyter -f values.yaml
+helm install jadepangeo --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f values.yaml -f secrets.yaml
 
 # Apply changes
-helm upgrade pangeo.informaticslab.co.uk jadepangeo -f values.yaml
+helm upgrade jupyterhub.informaticslab.co.uk jadepangeo -f values.yaml -f secrets.yaml
 
 # Delete
-helm delete pangeo.informaticslab.co.uk --purge
+helm delete jupyterhub.informaticslab.co.uk --purge
 ```
