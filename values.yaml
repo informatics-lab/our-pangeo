@@ -66,7 +66,7 @@ pangeo:
     singleuser:
       image:
         name: informaticslab/pangeo-notebook
-        tag: '0.4.2'
+        tag: '0.5.2'
       cmd: jupyter-labhub
       defaultUrl: "/lab"
       cpu:

@@ -19,6 +19,10 @@ ln -s /path/to/private-config/jade-pangeo/secrets.yaml secrets.yaml
 Now you can go ahead and run helm.
 
 ```shell
+# Add upstream pangeo repo and update
+helm repo add pangeo https://pangeo-data.github.io/helm-chart/
+helm repo update
+
 # Get deps
 helm dependency update jadepangeo
 
