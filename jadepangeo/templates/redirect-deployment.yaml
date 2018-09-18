@@ -1,3 +1,4 @@
+{{- if .Values.redirect.enabled -}}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -26,3 +27,4 @@ spec:
           env:
             - name: SERVER_REDIRECT
               value: {{ .Values.redirect.to }}
+{{- end -}}
