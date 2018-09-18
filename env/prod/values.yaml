@@ -4,6 +4,7 @@ telegraf:
   password: OVERRIDEME
 
 redirect:
+  enabled: true
   to: pangeo.informaticslab.co.uk
   from:
   - 'jupyterhub.informaticslab.co.uk'
@@ -116,6 +117,7 @@ pangeo:
         users:
           - jacobtomlinson
           - niallrobinson
+          - tam203
 
       type: github
       github:

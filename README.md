@@ -13,7 +13,7 @@ You'll also need to symlink the config from our [private-config](https://github.
 _If you're not a member of the Informatics Lab and are looking to set this up yourself then check out the `values.yaml` file and the config for the other dependencies._
 
 ```shell
-ln -s /path/to/private-config/jade-pangeo/secrets.yaml secrets.yaml
+ln -s /path/to/private-config/jade-pangeo/env/(prod|dev)/secrets.yaml env/(prod|dev)/secrets.yaml
 ```
 
 Now you can go ahead and run helm.
@@ -27,13 +27,22 @@ helm repo update
 helm dependency update jadepangeo
 
 # Install
-helm install jadepangeo --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f values.yaml -f secrets.yaml
+# prod
+helm install jadepangeo --name=jupyterhub.informaticslab.co.uk --namespace=jupyter -f env/prod/values.yaml -f env/prod/secrets.yaml
+# dev
+helm install jadepangeo --name=pangeo-dev.informaticslab.co.uk --namespace=pangeo-dev -f env/dev/values.yaml -f env/dev/secrets.yaml
 
 # Apply changes
-helm upgrade jupyterhub.informaticslab.co.uk jadepangeo -f values.yaml -f secrets.yaml
+# prod
+helm upgrade jupyterhub.informaticslab.co.uk jadepangeo -f env/prod/values.yaml -f env/prod/secrets.yaml
+# dev
+helm upgrade pangeo-dev.informaticslab.co.uk jadepangeo -f env/dev/values.yaml -f env/dev/secrets.yaml
 
 # Delete
+# prod
 helm delete jupyterhub.informaticslab.co.uk --purge
+# dev
+helm delete pangeo-dev.informaticslab.co.uk --purge
 ```
 
 ## Troubleshooting
