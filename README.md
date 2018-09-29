@@ -69,7 +69,7 @@ This can also happen when AWS occasionally has problems mounting the EBS volume.
 
 This will resolve itself with time, but due to backoff timouts this can be a while. To speed things along you can manually scale the hub down to one pod, then wait for all to temrinate, then scale back up.
 
-```
+```shell
 # Scale down
 kubectl -n jupyter scale deployment hub --replicas=0
 
@@ -88,7 +88,7 @@ If a user logs out with a full home directory they may not be able to log back i
 
 If the user has an active kernel either in a notebook or shell they can try to clear out the files them selves. However the easiest way is for an admin with kubectl access to exec a bash session inside the user's pod and clean out the files.
 
-```
+```shell
 kubectl -n jupyter exec -it jupyter-jacobtomlinson bash
 ```
 
@@ -98,3 +98,33 @@ kubectl -n jupyter exec -it jupyter-jacobtomlinson bash
 When a kernel exceeds the memory limits specified in the `values.yaml` file it will be sent a `SIGKILL` by the Kubernetes kubelet. This causes the kernel to silently exit. When viewing this in the notebook the activity light will switch to 'restarting' then 'idle' but the cell will still appear to be executing and there will be no stderr output.
 
 This is expected functionality but frustrating for users.
+
+
+## Auto deployment
+
+The auto deployment requires these environment variables to be set.
+
+```shell
+SECRETS_REPO # Git url of the private config repo.
+RELEASE_NAME # Helm chart release name
+SSH_KEY # Base 64 encode version of the private side of the github deploy key
+CERTIFICATE_AUTHORITY_DATA 
+CLUSTER_URL
+CLIENT_CERTIFICATE_DATA
+CLIENT_KEY_DATA
+PASSWORD
+USERNAME
+```
+
+`SSH_KEY` is the private key to match the deploy key for the repo. Should be in base64 format.
+
+You can create one like so.
+```shell
+ssh-keygen -f ./key
+SSH_KEY=$(cat key |base64)
+```
+
+`$SSH_KEY` is the env var `key.pub` is the public deploy key for github.
+
+
+If you are already set up with `kubectl` most of the rest of the vars can be found in your `~/.kube/conf`, `k8-config.yaml` is a tempted version of this file.
