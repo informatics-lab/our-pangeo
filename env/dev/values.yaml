@@ -111,24 +111,8 @@ pangeo:
           readOnly: true
 
     auth:
-      admin:
-        access: true
-        users:
-          - jacobtomlinson
-          - niallrobinson
-          - tam203
-
-      type: github
       github:
-        clientId: OVERRIDEME
-        clientSecret: OVERRIDEME
         callbackUrl: "https://pangeo-dev.informaticslab.co.uk/hub/oauth_callback"
-        # org_whitelist:
-        #   - "pangeo-met-office"
-        scopes:
-          - "read:org"
-      scopes:
-        - "read:org"
 
     prePuller:
       hook:
