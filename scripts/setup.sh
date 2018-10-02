@@ -39,6 +39,7 @@ cd $REPO_DIR/..
 git clone $SECRETS_REPO secrets
 cd $REPO_DIR
 ln -s $(cd ..; pwd)/secrets/jade-pangeo/dev/secrets.yaml ./env/dev/secrets.yaml
+ln -s $(cd ..; pwd)/secrets/jade-pangeo/prod/secrets.yaml ./env/prod/secrets.yaml
 
 
 # Setup kubectl config from template
