@@ -1,2 +1,24 @@
 redirect:
   enabled: false
+
+pangeo:
+  jupyterhub:
+    auth:
+      admin:
+        access: true
+        users:
+          - jacobtomlinson
+          - niallrobinson
+          - tam203
+
+      type: github
+      github:
+        clientId: OVERRIDEME
+        clientSecret: OVERRIDEME
+        callbackUrl: OVERRIDEME
+        org_whitelist:
+          - "pangeo-met-office"
+        scopes:
+          - "read:org"
+      scopes:
+        - "read:org"
