@@ -4,6 +4,7 @@ echo "*** Deploy ***"
 
 ENV=$1 # environment `dev` or `prod`
 RELEASE_NAME=$2 # helm chart release name.
+NAMESPACE=$3 # kubernetes namespace to use.
 
 echo ENV=$1 RELEASE_NAME=$2
 
@@ -19,7 +20,7 @@ helm repo update
 helm dependency update jadepangeo
 
 # Apply changes
-helm upgrade --install $RELEASE_NAME jadepangeo -f env/$ENV/values.yaml -f env/$ENV/secrets.yaml
+helm upgrade --install $RELEASE_NAME jadepangeo --namespace $NAMESPACE -f env/$ENV/values.yaml -f env/$ENV/secrets.yaml
 
 
 echo "*** Deployed successfully ***"
