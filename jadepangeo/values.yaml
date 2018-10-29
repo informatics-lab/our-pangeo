@@ -32,11 +32,14 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-            'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (recomended)',
-            'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
+            'display_name': 'Informatics Lab - Pangeo Notebook v0.5.5 (recomended)',
+            'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.5'}
             },{
             'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
             'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:dev'}
+            },{
+            'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (previous)',
+            'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
             },{
             'display_name': 'Pangeo - Pangeo Notebook',
             'kubespawner_override': {'singleuser_image_spec': 'pangeo/notebook:2018-06-13.4'}
@@ -47,7 +50,7 @@ pangeo:
           }
 
       cookieSecret: OVERRIDEME
-      
+
       extraVolumes:
         - name: custom-templates
           gitRepo:
@@ -64,7 +67,7 @@ pangeo:
     singleuser:
       image:
         name: informaticslab/pangeo-notebook
-        tag: '0.5.4'
+        tag: '0.5.5'
       cmd: jupyter-labhub
       defaultUrl: "/lab"
       cpu:
@@ -127,7 +130,7 @@ pangeo:
           - "read:org"
       scopes:
         - "read:org"
-    
+
     prePuller:
       hook:
         enabled: false
