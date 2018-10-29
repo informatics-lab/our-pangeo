@@ -1,4 +1,3 @@
-
 redirect:
   enabled: false
 
@@ -15,10 +14,11 @@ pangeo:
     auth:
       github:
         callbackUrl: "https://pangeo-water.informaticslab.co.uk/hub/oauth_callback"
+        org_whitelist: null  # Disable the default org whitelist
 
     hub:
       extraVolumes:
         - name: custom-templates
           gitRepo:
             repository: "https://github.com/met-office-lab/jade-custom-jupyterhub-templates.git"
-            revision: "419cae134edd940a7e9377260b387f6381fb1414"
+            revision: "93908fc6b9c878bc4f3e9d2e67128d6ccdded484"
