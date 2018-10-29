@@ -15,3 +15,10 @@ pangeo:
     auth:
       github:
         callbackUrl: "https://pangeo-water.informaticslab.co.uk/hub/oauth_callback"
+
+    hub:
+      extraVolumes:
+        - name: custom-templates
+          gitRepo:
+            repository: "https://github.com/met-office-lab/jade-custom-jupyterhub-templates.git"
+            revision: "419cae134edd940a7e9377260b387f6381fb1414"
