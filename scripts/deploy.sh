@@ -19,7 +19,7 @@ helm repo update
 helm dependency update jadepangeo
 
 # Apply changes
-helm upgrade $RELEASE_NAME jadepangeo -f env/$ENV/values.yaml -f env/$ENV/secrets.yaml
+helm upgrade --install $RELEASE_NAME jadepangeo -f env/$ENV/values.yaml -f env/$ENV/secrets.yaml
 
 
 echo "*** Deployed successfully ***"
