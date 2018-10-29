@@ -25,4 +25,4 @@ pangeo:
 
     singleuser:
       extraEnv:
-        INTAKE_PATH: '/s3/informatics-water-resilience-challenge-intake-catalogs/'
+        INTAKE_PATH: "/s3/informatics-intake-catalogs/:/s3/informatics-water-resilience-challenge-intake-catalogs/"
