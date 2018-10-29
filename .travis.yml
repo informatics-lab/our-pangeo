@@ -9,11 +9,17 @@ install:
 
 script:
   - bash $TRAVIS_BUILD_DIR/scripts/test-chart.sh
-  
+
 deploy:
   - provider: script
     skip_cleanup: true
     script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh dev pangeo-dev.informaticslab.co.uk
+    on:
+      branch: master
+
+  - provider: script
+    skip_cleanup: true
+    script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh water pangeo-water.informaticslab.co.uk
     on:
       branch: master
 
