@@ -22,3 +22,7 @@ pangeo:
           gitRepo:
             repository: "https://github.com/met-office-lab/jade-custom-jupyterhub-templates.git"
             revision: "93908fc6b9c878bc4f3e9d2e67128d6ccdded484"
+
+    singleuser:
+      extraEnv:
+        INTAKE_PATH: '/s3/informatics-water-resilience-challenge-intake-catalogs/'
