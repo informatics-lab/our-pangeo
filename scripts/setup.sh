@@ -15,7 +15,7 @@ sudo ./helm-install.sh
 echo "*** Install kubectl ***"
 sudo apt-get update && sudo apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo touch /etc/apt/sources.list.d/kubernetes.list 
+sudo touch /etc/apt/sources.list.d/kubernetes.list
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
@@ -38,8 +38,10 @@ echo "*** Link in secrets ***"
 cd $REPO_DIR/..
 git clone $SECRETS_REPO secrets
 cd $REPO_DIR
-ln -s $(cd ..; pwd)/secrets/jade-pangeo/dev/secrets.yaml ./env/dev/secrets.yaml
-ln -s $(cd ..; pwd)/secrets/jade-pangeo/prod/secrets.yaml ./env/prod/secrets.yaml
+for dir in env/*; do
+    env=${dir##*/}
+    ln -s $(cd ..; pwd)/secrets/jade-pangeo/${env}/secrets.yaml ./env/${env}/secrets.yaml
+done
 
 
 # Setup kubectl config from template

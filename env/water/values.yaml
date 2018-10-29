@@ -1,0 +1,17 @@
+
+redirect:
+  enabled: false
+
+pangeo:
+  jupyterhub:
+    ingress:
+      hosts:
+      - pangeo-water.informaticslab.co.uk
+      tls:
+        - hosts:
+          - pangeo-water.informaticslab.co.uk
+          secretName: kubelego-tls-proxy-pangeo-water.informaticslab.co.uk
+
+    auth:
+      github:
+        callbackUrl: "https://pangeo-water.informaticslab.co.uk/hub/oauth_callback"
