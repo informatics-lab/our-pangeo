@@ -21,7 +21,7 @@ pangeo:
         - name: custom-templates
           gitRepo:
             repository: "https://github.com/met-office-lab/jade-custom-jupyterhub-templates.git"
-            revision: "bc123f51bf4c8082f06fcf6a8160e3ae2c0ee0d7"
+            revision: "9f92cac735199241777e27c660da05a891c5ea6b"
 
     singleuser:
       extraEnv:
