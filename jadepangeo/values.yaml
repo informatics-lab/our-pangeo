@@ -38,7 +38,7 @@ pangeo:
               'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
               'kubespawner_override': {
                 'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:dev',
-                'image_pull_policy': 'Always'
+                'singleuser_image_pull_policy': 'Always'
               }
             },{
               'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (previous)',
