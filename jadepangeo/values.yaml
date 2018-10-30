@@ -32,17 +32,20 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-            'display_name': 'Informatics Lab - Pangeo Notebook v0.5.5 (recomended)',
-            'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.5'}
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.5 (recomended)',
+              'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.5'}
             },{
-            'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
-            'kubespawner_override': {'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:dev'}
+              'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
+              'kubespawner_override': {
+                'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:dev',
+                'image_pull_policy': 'Always'
+              }
             },{
-            'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (previous)',
-            'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (previous)',
+              'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
             },{
-            'display_name': 'Pangeo - Pangeo Notebook',
-            'kubespawner_override': {'singleuser_image_spec': 'pangeo/notebook:2018-06-13.4'}
+              'display_name': 'Pangeo - Pangeo Notebook',
+              'kubespawner_override': {'singleuser_image_spec': 'pangeo/notebook:2018-06-13.4'}
             }]
           # Remove this when jupyterhub/zero-to-jupyterhub-k8s#882 makes it in
           c.KubeSpawner.extra_annotations = {
