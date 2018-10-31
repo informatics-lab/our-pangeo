@@ -32,8 +32,8 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.5 (recomended)',
-              'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.5'}
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.8 (recomended)',
+              'kubespawner_override': {'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.5.8'}
             },{
               'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
               'kubespawner_override': {
@@ -41,7 +41,7 @@ pangeo:
                 'singleuser_image_pull_policy': 'Always'
               }
             },{
-              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4 (previous)',
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4',
               'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
             },{
               'display_name': 'Pangeo - Pangeo Notebook',
@@ -69,8 +69,8 @@ pangeo:
 
     singleuser:
       image:
-        name: informaticslab/pangeo-notebook
-        tag: '0.5.5'
+        name: 536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook
+        tag: '0.5.8'
       cmd: jupyter-labhub
       defaultUrl: "/lab"
       cpu:
