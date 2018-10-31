@@ -82,7 +82,7 @@ pangeo:
       # nodeSelector:
       #   "k8s.io/cluster-autoscaler/node-template/label/spot": "false"
       extraEnv:
-        INTAKE_PATH: "/s3/informatics-intake-catalogs/"
+        INTAKE_PATH: "/s3/informatics-pangeo-data/catalogs/weather:/s3/informatics-pangeo-data/catalogs/climate"
         EXAMPLES_GIT_URL: https://github.com/informatics-lab/example-notebooks.git
         DASK_KUBERNETES__DIAGNOSTICS_LINK: "{JUPYTERHUB_SERVICE_PREFIX}proxy/{port}/status"
         DASK_KUBERNETES__WORKER_TEMPLATE_PATH: "/etc/daskernetes/worker-template.yaml"
