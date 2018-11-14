@@ -19,12 +19,6 @@ deploy:
 
   - provider: script
     skip_cleanup: true
-    script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh water pangeo-water.informaticslab.co.uk pangeo-water
-    on:
-      branch: master
-
-  - provider: script
-    skip_cleanup: true
     script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh prod jupyterhub.informaticslab.co.uk jupyter
     on:
       tags: true
