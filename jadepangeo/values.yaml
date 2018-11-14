@@ -50,6 +50,14 @@ pangeo:
                 'cpu_limit': 8,
                 'mem_limit': '54G',
                 'extra_resource_guarantees': {"nvidia.com/gpu": "1"},
+                'tolerations': [
+                  {
+                      'key': 'informaticslab.co.uk/dedicated',
+                      'operator': 'Equal',
+                      'value': 'gpu',
+                      'effect': 'NoSchedule'
+                  },
+                ]
               }
             },{
               'display_name': 'Pangeo - Pangeo Notebook',
