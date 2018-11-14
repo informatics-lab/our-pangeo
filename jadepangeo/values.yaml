@@ -44,6 +44,14 @@ pangeo:
               'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4',
               'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
             },{
+              'display_name': 'Informatics Lab - ML Pangeo Notebook v0.5.10 (expensive)',
+              'kubespawner_override': {
+                'image': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.5.10',
+                'cpu_limit': 8,
+                'mem_limit': '54G',
+                'extra_resource_guarantees': {"nvidia.com/gpu": "1"},
+              }
+            },{
               'display_name': 'Pangeo - Pangeo Notebook',
               'kubespawner_override': {'singleuser_image_spec': 'pangeo/notebook:2018-06-13.4'}
             }]
