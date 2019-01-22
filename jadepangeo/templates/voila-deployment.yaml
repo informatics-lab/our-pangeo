@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: redirect
+  name: voila
   labels:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     component: voila
