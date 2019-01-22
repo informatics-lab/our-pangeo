@@ -6,10 +6,10 @@ voila:
   enabled: true
   ingress:
     hosts:
-    - voila-dev.pangeo.informaticslab.co.uk
+    - voila.pangeo-dev.informaticslab.co.uk
     tls:
       - hosts:
-        - voila-dev.pangeo.informaticslab.co.uk
+        - voila.pangeo-dev.informaticslab.co.uk
         secretName: kubelego-tls-voila-pangeo-dev.informaticslab.co.uk
 
 pangeo:
