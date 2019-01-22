@@ -21,7 +21,8 @@ spec:
       containers:
         - name: voila
           image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
-          args: ['voila']
+          command: ['voila']
+          args: []
           workingDir: /scratch/voila
           resources:
             cpu:
