@@ -6,7 +6,7 @@ redirect:
   - 'jupyter.informaticslab.co.uk'
 
 pangeo:
-  jupyterhub:    
+  jupyterhub:
     ingress:
       hosts:
       - pangeo.informaticslab.co.uk

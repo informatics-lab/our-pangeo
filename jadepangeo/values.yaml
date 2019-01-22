@@ -6,6 +6,16 @@ telegraf:
 redirect:
   enabled: false
 
+voila:
+  enabled: false
+  resources:
+    cpu:
+      limit: 2
+      guarantee: 1
+    memory:
+      limit: 16G
+      guarantee: 2G
+
 pangeo:
   jupyterhub:
 
@@ -32,8 +42,8 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.13 (recommended)',
-              'kubespawner_override': {'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.5.13'},
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.5.14 (recomended)',
+              'kubespawner_override': {'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.5.14'},
               'default': True
             },{
               'display_name': 'Informatics Lab - Pangeo Notebook dev (unstable)',
@@ -71,7 +81,7 @@ pangeo:
     singleuser:
       image:
         name: 536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook
-        tag: '0.5.13'
+        tag: '0.5.14'
       cmd: jupyter-labhub
       defaultUrl: "/lab"
       cpu:
