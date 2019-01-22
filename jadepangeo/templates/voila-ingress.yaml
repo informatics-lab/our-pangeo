@@ -1,0 +1,24 @@
+{{- if .Values.voila.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: voila
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    {{- range $host := .Values.voila.ingress.hosts }}
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: voila
+              servicePort: 80
+    {{- end }}
+  {{- if .Values.voila.ingress.tls }}
+  tls:
+    {{- .Values.voila.ingress.tls | toYaml | trimSuffix "\n" | nindent 4 }}
+  {{- end }}
+{{- end -}}

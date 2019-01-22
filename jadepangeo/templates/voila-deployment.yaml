@@ -1,0 +1,55 @@
+{{- if .Values.voila.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redirect
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: voila
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: voila
+        component: voila
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      containers:
+        - name: voila
+          image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
+          args: [voila, /scratch/voila]
+          resources:
+            cpu:
+              limit: {{ .Values.voila.resources.cpu.limit }}
+              guarantee: {{ .Values.voila.resources.cpu.guarantee }}
+            memory:
+              limit: {{ .Values.voila.resources.memory.limit }}
+              guarantee: {{ .Values.voila.resources.memory.guarantee }}
+          volumeMounts:
+            - name: s3
+              mountPath: /s3
+            - name: scratch
+              mountPath: /scratch
+          nodeSelector:
+            k8s.io/cluster-autoscaler/node-template/label/spot: "true"
+          ports:
+            - name: voila
+              containerPort: 8866
+      volumes:
+        - name: s3
+          flexVolume:
+            driver: "informaticslab/pysssix-flex-volume"
+            options:
+              readonly: "true"
+        - name: scratch
+          flexVolume:
+            driver: "informaticslab/goofys-flex-volume"
+            options:
+              bucket: "informatics-pangeo-scratch"
+              dirMode: "0777"
+              fileMode: "0777"
+{{- end -}}

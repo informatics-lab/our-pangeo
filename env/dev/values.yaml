@@ -2,6 +2,16 @@
 redirect:
   enabled: false
 
+voila:
+  enabled: true
+  ingress:
+    hosts:
+    - voila-dev.pangeo.informaticslab.co.uk
+    tls:
+      - hosts:
+        - voila-dev.pangeo.informaticslab.co.uk
+        secretName: kubelego-tls-voila-pangeo-dev.informaticslab.co.uk
+
 pangeo:
   jupyterhub:
     ingress:

@@ -6,6 +6,16 @@ telegraf:
 redirect:
   enabled: false
 
+voila:
+  enabled: false
+  resources:
+    cpu:
+      limit: 2
+      guarantee: 1
+    memory:
+      limit: 16G
+      guarantee: 2G
+
 pangeo:
   jupyterhub:
 
