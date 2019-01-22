@@ -10,7 +10,7 @@ voila:
     tls:
       - hosts:
         - voila.pangeo-dev.informaticslab.co.uk
-        secretName: kubelego-tls-voila-pangeo-dev.informaticslab.co.uk
+        secretName: certmanager-tls-voila-pangeo-dev.informaticslab.co.uk
 
 pangeo:
   jupyterhub:
