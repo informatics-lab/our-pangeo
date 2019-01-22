@@ -1,4 +1,4 @@
-# Our Pangeo
+# Our Pangeo [![Build Status](https://travis-ci.com/informatics-lab/our-pangeo.svg?branch=master)](https://travis-ci.com/informatics-lab/our-pangeo)
 
 We have joined forces with the [Pangeo community](https://pangeo-data.github.io/)! Pangeo is a curated stack of software and tools to empower big data processing in the atmostpheric, oceanographic and climate community. Much of the work we did in our previous [Jade](https://github.com/informatics-lab?utf8=%E2%9C%93&q=jade&type=&language=) project has been integreated into Pangeo.
 
