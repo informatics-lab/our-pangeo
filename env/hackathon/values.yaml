@@ -9,15 +9,15 @@ pangeo:
   jupyterhub:
     ingress:
       hosts:
-      - pangeo-hackathon.informaticslab.co.uk
+      - hackathon.informaticslab.co.uk
       tls:
         - hosts:
-          - pangeo-hackathon.informaticslab.co.uk
-          secretName: tls-pangeo-hackathon
+          - hackathon.informaticslab.co.uk
+          secretName: cermanager-tls-pangeo-hackathon
 
     auth:
       github:
-        callbackUrl: "https://pangeo-hackathon.informaticslab.co.uk/hub/oauth_callback"
+        callbackUrl: "https://hackathon.informaticslab.co.uk/hub/oauth_callback"
         org_whitelist: null  # Disable the default org whitelist
 
   singleuser:
