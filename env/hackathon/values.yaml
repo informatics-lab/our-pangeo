@@ -13,7 +13,7 @@ pangeo:
       tls:
         - hosts:
           - pangeo-hackathon.informaticslab.co.uk
-          secretName: tls-pangeo-hackathon.informaticslab.co.uk
+          secretName: tls-pangeo-hackathon
 
     auth:
       github:
