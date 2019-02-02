@@ -20,6 +20,6 @@ pangeo:
         callbackUrl: "https://hackathon.informaticslab.co.uk/hub/oauth_callback"
         org_whitelist: null  # Disable the default org whitelist
 
-  singleuser:
-    extraEnv:
-      INTAKE_PATH: "/s3/informatics-pangeo-data/catalogs/weather:/s3/informatics-pangeo-data/catalogs/climate:/s3/informatics-pangeo-data/catalogs/hackathon"
+    singleuser:
+      extraEnv:
+        INTAKE_PATH: "/s3/informatics-pangeo-data/catalogs/weather:/s3/informatics-pangeo-data/catalogs/climate:/s3/informatics-pangeo-data/catalogs/hackathon"
