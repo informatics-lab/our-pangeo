@@ -51,6 +51,14 @@ pangeo:
                 'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:dev',
                 'singleuser_image_pull_policy': 'Always'
               }
+            },
+            {
+              'display_name': 'Informatics Lab - ML Notebook v0.5.14 (unstable)',
+              'kubespawner_override': {
+                'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.5.14',
+                'cpu_limit': 7,
+                'mem_limit': '28G',
+                },
             },{
               'display_name': 'Informatics Lab - Pangeo Notebook v0.5.4',
               'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.5.4'}
@@ -151,3 +159,7 @@ pangeo:
         enabled: false
       continuous:
         enabled: true
+
+    cull:
+      enabled: true
+      timeout: 86400
