@@ -15,11 +15,7 @@ rules:
   - cronjobs
   - jobs
   verbs:
-  - create
-  - delete
-  - deletecollection
-  - patch
-  - update
+  - '*'
 
 ---
 
