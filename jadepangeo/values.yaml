@@ -108,6 +108,7 @@ pangeo:
         DASK_KUBERNETES__WORKER_NAME: "dask-{JUPYTERHUB_USER}-{uuid}"
         # Workaround for https://github.com/ContinuumIO/anaconda-issues/issues/6698
         _PYTHON_SYSCONFIGDATA_NAME: "_sysconfigdata_m_linux_x86_64-linux-gnu"
+        KRONTAB_OWNER: "$JUPYTERHUB_USER"
       storage:
         extraVolumes:
         - name: s3
