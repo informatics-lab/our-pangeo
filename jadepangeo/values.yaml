@@ -138,7 +138,7 @@ pangeo:
           mountPath: /etc/daskernetes
           readOnly: true
         - name: krontab-config
-          mountPath: /etc/krontab/krontab/templates
+          mountPath: /etc/xdg/krontab/krontab/templates
 
     auth:
       admin:
