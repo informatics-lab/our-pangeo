@@ -169,4 +169,4 @@ pangeo:
 
     cull:
       enabled: true
-      timeout: 86400
+      timeout: 3600
