@@ -1,30 +1,37 @@
 sudo: required
-
 language: python
+
 python:
   - '3.6'
 
 install:
-  - $TRAVIS_BUILD_DIR/scripts/setup.sh
+  - "$TRAVIS_BUILD_DIR/scripts/setup.sh"
 
 script:
   - bash $TRAVIS_BUILD_DIR/scripts/test-chart.sh
 
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh dev pangeo-dev.informaticslab.co.uk pangeo-dev
-    on:
-      branch: master
+- provider: script
+  skip_cleanup: true
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh dev pangeo-dev.informaticslab.co.uk
+    pangeo-dev
+  on:
+    branch: master
+- provider: script
+  skip_cleanup: true
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh hackathon pangeo-hackathon.informaticslab.co.uk
+    pangeo-hackathon
+  on:
+    branch: master
+- provider: script
+  skip_cleanup: true
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh prod jupyterhub.informaticslab.co.uk
+    jupyter
+  on:
+    tags: true
 
-  - provider: script
-    skip_cleanup: true
-    script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh hackathon pangeo-hackathon.informaticslab.co.uk pangeo-hackathon
-    on:
-      branch: master
-
-  - provider: script
-    skip_cleanup: true
-    script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh prod jupyterhub.informaticslab.co.uk jupyter
-    on:
-      tags: true
+notifications:
+  slack:
+    rooms:
+      secure: qwlWHyrkPXZ3IeuwG8A0MKO01yRw96OpbZK7y3dGhSPKAXKFvjSuXLr8CcZfddVowqQ8j5El5QkCvtZCZuGnX3uLLv80BNjtKcF+lArHOAF/Tyt62HYNqcnd6TuSPi+lT5+FtdEZlQRij6dmCY+UtXwDTiG2VrpRFnG90B6MCJ04DJgD/P8pFpYnhpPJpnOsh0gAckGyu+qYbK6Z25Pq2eY8MCD2as3NO/gs/GyPY8eKdP1XfCAl2SO0C/WBJ8wPuWGk4Rb9tIQ5vqhP8IZBjnPTQz2suDRSR5SKwEgq9olVysIxwtXP+JF/+sNyce12NFVW647sEt6hXssClinus8RSnnQ5xCzF6OYYsckGYpZ9Yrlvn18ykRLf98c5tkJqLqZbUg1W5SEYKWG7VcTuZMTH0Xp0emeUtRlZ02aQwEaqviwdRL2/UoeYJPVPhPsQDOBpGlTSybfEoIhQl4IuMkSV+em2WqPj8y7nY03z6c74YuvWMqgQrec7/Hw2/g61OysGuwFsEvjmeSl5pi1tytcH+s1HlTqYuo90gD4fS/+aCqDUns160HuWsI260TvAC7c0T8EUkUHK3dMTppFl40zv62Eov34Z1uat6OqGPx55uOXmitiwoL7BTN2exsPluYv3E04KG7AWboQgjk6DvHd+1R1ASSJXEbKrE3fNuN0=
+    on_success: always
