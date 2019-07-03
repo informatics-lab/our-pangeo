@@ -26,7 +26,7 @@ data:
             - name: scratch
               mountPath: /scratch
           nodeSelector:
-            k8s.io/cluster-autoscaler/node-template/label/spot: "true"
+            aks-pangeon1-10905646-vmss000000: "true"
       volumes:
         - name: s3
           flexVolume:

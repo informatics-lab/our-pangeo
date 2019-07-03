@@ -4,7 +4,7 @@ version: 0.1.0
 description: An extention of jupyterhub for our own use
 icon: https://raw.githubusercontent.com/pangeo-data/branding/master/logo/pangeo_card_green.svg
 maintainers:
-  - name: Jacob Tomlinson
-    email: jacob.tomlinson@informaticslab.co.uk
+  - name: Peter Killick
+    email: peter.killick@informaticslab.co.uk
   - name: Theo McCaie
     email: theo.mccaie@informaticslab.co.uk
