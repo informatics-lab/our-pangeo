@@ -2,15 +2,15 @@
 redirect:
   enabled: false
 
-# voila:
-#   enabled: true
-#   ingress:
-#     hosts:
-#     - voila.pangeo-azure.informaticslab.co.uk
-#     tls:
-#       - hosts:
-#         - voila.pangeo-azure.informaticslab.co.uk
-#         secretName: certmanager-tls-voila-pangeo-azure.informaticslab.co.uk
+voila:
+  enabled: false
+  ingress:
+    hosts:
+    - voila.pangeo-azure.informaticslab.co.uk
+    tls:
+      - hosts:
+        - voila.pangeo-azure.informaticslab.co.uk
+        secretName: certmanager-tls-voila-pangeo-azure.informaticslab.co.uk
 
 pangeo:
   jupyterhub:

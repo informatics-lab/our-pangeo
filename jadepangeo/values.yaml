@@ -1,4 +1,5 @@
 telegraf:
+  enabled: false
   url: OVERRIDEME
   username: OVERRIDEME
   password: OVERRIDEME
@@ -51,6 +52,8 @@ pangeo:
           #   'iam.amazonaws.com/role': 'arn:aws:iam::536099501702:role/pangeo'
           # }
 
+      nodeSelector:
+        agentpool: "nodepool1"
       cookieSecret: OVERRIDEME
 
       extraVolumes:
@@ -79,8 +82,8 @@ pangeo:
       memory:
         limit: 16G
         guarantee: 2G
-      # nodeSelector:
-      #   "k8s.io/cluster-autoscaler/node-template/label/spot": "false"
+      nodeSelector:
+        agentpool: "nodepool1"
       extraEnv:
         # INTAKE_PATH: "/s3/informatics-pangeo-data/catalogs/weather:/s3/informatics-pangeo-data/catalogs/climate"
         EXAMPLES_GIT_URL: https://github.com/informatics-lab/example-notebooks.git
@@ -91,6 +94,8 @@ pangeo:
         _PYTHON_SYSCONFIGDATA_NAME: "_sysconfigdata_m_linux_x86_64-linux-gnu"
         KRONTAB_OWNER: "$JUPYTERHUB_USER"
       storage:
+        dynamic:
+          StorageClass: azurefile
         extraVolumes:
         # - name: s3
         #   flexVolume:
@@ -134,8 +139,8 @@ pangeo:
         clientId: OVERRIDEME
         clientSecret: OVERRIDEME
         callbackUrl: OVERRIDEME
-        # org_whitelist:
-        #   - "pangeo-met-office"
+        org_whitelist:
+          - "pangeo-met-office"
         scopes:
           - "read:org"
       scopes:
