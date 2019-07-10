@@ -1,20 +1,21 @@
 redirect:
   enabled: true
-  to: pangeo.informaticslab.co.uk
+  to: pangeo-v2.informaticslab.co.uk
   from:
   - 'jupyterhub.informaticslab.co.uk'
   - 'jupyter.informaticslab.co.uk'
+  - 'pangeo.informaticslab.co.uk'
 
 pangeo:
   jupyterhub:
     ingress:
       hosts:
-      - pangeo.informaticslab.co.uk
+      - pangeo-v2.informaticslab.co.uk
       tls:
         - hosts:
-          - pangeo.informaticslab.co.uk
+          - pangeo-v2.informaticslab.co.uk
           secretName: kubelego-tls-proxy-pangeo.informaticslab.co.uk
 
     auth:
       github:
-        callbackUrl: "https://pangeo.informaticslab.co.uk/hub/oauth_callback"
+        callbackUrl: "https://pangeo-v2.informaticslab.co.uk/hub/oauth_callback"
