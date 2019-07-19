@@ -43,22 +43,18 @@ pangeo:
           c.KubeSpawner.profile_list = [
             {
 
-              'display_name': 'Informatics Lab - Pangeo Notebook v0.6.9 (recomended)',
+              'display_name': 'Informatics Lab - Pangeo Notebook v0.6.9 (recommended)',
               'kubespawner_override': {'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.6.9'},
 
               'default': True
             },
             {
-              'display_name': 'Informatics Lab - ML Notebook v0.6.9 (unstable)',
+              'display_name': 'Informatics Lab - ML Notebook v0.6.9',
               'kubespawner_override': {
                 'singleuser_image_spec': '536099501702.dkr.ecr.eu-west-2.amazonaws.com/pangeo-notebook:0.6.9',
                 'cpu_limit': 7,
                 'mem_limit': '28G',
                 },
-            },
-            {
-              'display_name': 'Pangeo - Pangeo Notebook',
-              'kubespawner_override': {'singleuser_image_spec': 'pangeo/pangeo-notebook:2019.05.23'}
             }]
           # Remove this when jupyterhub/zero-to-jupyterhub-k8s#882 makes it in
           c.KubeSpawner.extra_annotations = {
