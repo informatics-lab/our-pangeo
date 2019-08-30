@@ -43,9 +43,14 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-              'display_name': 'Informatics Lab Pangeo Notebook v0.6.9',
-              'kubespawner_override': {'singleuser_image_spec': 'ourpangeo.azurecr.io/pangeo-notebook:0.6.9'},
+              'display_name': 'Informatics Lab Pangeo Notebook v0.7.0 (latest)',
+              'kubespawner_override': {'singleuser_image_spec': 'ourpangeo.azurecr.io/pangeo-notebook:0.7.0'},
               'default': True
+            },
+            {
+              'display_name': 'Informatics Lab Pangeo Notebook v0.6.9 (previous)',
+              'kubespawner_override': {'singleuser_image_spec': 'ourpangeo.azurecr.io/pangeo-notebook:0.6.9'},
+              'default': False
             }
             ]
           # # Remove this when jupyterhub/zero-to-jupyterhub-k8s#882 makes it in
@@ -74,9 +79,9 @@ pangeo:
       image:
         name: ourpangeo.azurecr.io/pangeo-notebook
         # name: informaticslab/pangeo-notebook
-        tag: 0.6.9
+        tag: 0.7.0
       imagePullSecret:
-        enabled: OVERRIDEME
+        enabled: false
         registry: OVERRIDEME
         username: OVERRIDEME
         email: OVERRIDEME

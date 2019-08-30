@@ -29,5 +29,3 @@ data:
             operator: Exists
           - key: azure.com/aci
             effect: NoSchedule
-      imagePullSecrets:
-      - name: "singleuser-image-credentials"
