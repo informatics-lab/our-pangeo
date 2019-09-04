@@ -13,8 +13,11 @@ You'll also need to symlink the config from our [private-config](https://github.
 _If you're not a member of the Informatics Lab and are looking to set this up yourself then check out the `values.yaml` file and the config for the other dependencies._
 
 ```shell
-ln -s /path/to/private-config/jade-pangeo/prod/secrets.yaml env/prod/secrets.yaml
-ln -s /path/to/private-config/jade-pangeo/dev/secrets.yaml env/dev/secrets.yaml
+PATH_TO_PRIVATE_CONFIG=$(cd $(pwd)/../private-config; pwd) # set as necessary
+ln -s $PATH_TO_PRIVATE_CONFIG/jade-pangeo/prod/secrets.yaml env/prod/secrets.yaml
+ln -s $PATH_TO_PRIVATE_CONFIG/jade-pangeo/dev/secrets.yaml env/dev/secrets.yaml
+ln -s $PATH_TO_PRIVATE_CONFIG/jade-pangeo/panzure/secrets.yaml env/panzure/secrets.yaml
+ln -s $PATH_TO_PRIVATE_CONFIG/jade-pangeo/panzure-dev/secrets.yaml env/panzure-dev/secrets.yaml
 ```
 
 Now you can go ahead and run helm.
@@ -127,3 +130,74 @@ SSH_KEY=$(cat key |base64)
 
 
 If you are already set up with `kubectl` most of the rest of the vars can be found in your `~/.kube/conf`, `k8-config.yaml` is a tempted version of this file.
+
+
+
+
+
+```
+
+#!/usr/bin/env bash
+
+set -ex
+
+#####
+# Update an existing autoscaling Azure Kubernetes Service resource to add the Informatics Lab pangeo.
+#####
+
+# Get kubernetes credentials for AKS resource.
+az aks get-credentials -g $RESOURE_GROUP_NAME -n $CLUSTER_NAME --overwrite-existing
+
+# Add upstream pangeo repo and update
+helm repo add pangeo https://pangeo-data.github.io/helm-chart/
+helm repo update
+
+# Install pangeo.
+pushd $PANGEO_CONFIG_PATH
+
+# Get dependencies
+helm dependency update jadepangeo
+# Install pangeo
+helm upgrade --install --namespace=$ENV $ENV.informaticslab.co.uk jadepangeo \
+  -f env/$ENV/values.yaml \
+  -f env/$ENV/secrets.yaml \
+  -f env/$ENV/secrets-azure.yaml
+
+popd
+
+# If we wanted to install the upstream pangeo.
+# helm upgrade --install --namespace pangeo pangeo pangeo/pangeo -f ../charts/pangeo.yaml
+```
+```
+# Create namespace if doesn't exist 
+if  ! kubectl get ns $ENV 2&>1 >/dev/null; then
+    kubectl create ns $ENV
+fi
+kubectl apply -f ../charts/azure-file-pvc-scratch.yaml -n $ENV  
+```
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-scratch
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+  resources:
+    requests:
+      storage: 100Gi
+
+```
+
+
+```
+{
+  "appId": "0e22cbc0-42e0-4a3b-93e2-7fcfa61eb3a5",
+  "displayName": "PangeoTravisDeploy",
+  "name": "http://PangeoTravisDeploy",
+  "password": "dd1939c7-43c5-4365-ab05-49ef13021983",
+  "tenant": "14fec308-b428-4380-b914-c1940f3210f1"
+}
+```

@@ -2,16 +2,6 @@
 redirect:
   enabled: false
 
-voila:
-  enabled: false
-  ingress:
-    hosts:
-    - voila.panzure.informaticslab.co.uk
-    tls:
-      - hosts:
-        - voila.panzure.informaticslab.co.uk
-        secretName: certmanager-tls-voila-panzure.informaticslab.co.uk
-
 pangeo:
   jupyterhub:
     ingress:
