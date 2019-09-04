@@ -190,14 +190,3 @@ spec:
       storage: 100Gi
 
 ```
-
-
-```
-{
-  "appId": "0e22cbc0-42e0-4a3b-93e2-7fcfa61eb3a5",
-  "displayName": "PangeoTravisDeploy",
-  "name": "http://PangeoTravisDeploy",
-  "password": "dd1939c7-43c5-4365-ab05-49ef13021983",
-  "tenant": "14fec308-b428-4380-b914-c1940f3210f1"
-}
-```
