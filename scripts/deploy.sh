@@ -8,6 +8,15 @@ NAMESPACE=$3 # kubernetes namespace to use.
 
 echo ENV=$1 RELEASE_NAME=$2
 
+# if azure conect to  that cluster. This isn't the most elegent way/place of doing this. TODO: find a better way.
+if [[ $ENV =~ "panzure" ]]
+then
+    echo "Azure env detected. Switching cluster"
+    az login --service-principal --username ${AZ_USERNAME} --password ${AZ_PASSWORD} --tenant ${AZ_TENENT}
+    az aks get-credentials -g "$ENV" -n "$ENV" --overwrite-existing
+fi
+
+
 # init helm
 helm init
 

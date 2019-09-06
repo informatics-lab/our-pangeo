@@ -20,6 +20,9 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/a
 sudo apt-get update
 sudo apt-get install -y kubectl
 
+echo "*** Install Azure CLI ***"
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
+
 
 # Set up ssh
 echo "*** Install ssh keys ***"

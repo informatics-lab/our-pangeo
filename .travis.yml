@@ -13,6 +13,11 @@ script:
 deploy:
 - provider: script
   skip_cleanup: true
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh panzure-dev panzure-dev panzure-dev
+  on:
+    branch: azure-ci
+- provider: script
+  skip_cleanup: true
   script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh dev pangeo-dev.informaticslab.co.uk
     pangeo-dev
   on:
