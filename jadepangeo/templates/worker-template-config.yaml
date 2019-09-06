@@ -20,14 +20,3 @@ data:
             requests:
               cpu: "1"
               memory: 6G
-          nodeSelector:
-            kubernetes.io/role: agent
-            beta.kubernetes.io/os: linux
-            type: virtual-kubelet
-          tolerations:
-          - key: virtual-kubelet.io/provider
-            operator: Exists
-          - key: azure.com/aci
-            effect: NoSchedule
-      imagePullSecrets:
-      - name: "singleuser-image-credentials"
