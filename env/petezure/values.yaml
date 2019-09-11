@@ -1,0 +1,27 @@
+
+redirect:
+  enabled: false
+
+voila:
+  enabled: false
+  ingress:
+    hosts:
+    - voila.petezure.informaticslab.co.uk
+    tls:
+      - hosts:
+        - voila.petezure.informaticslab.co.uk
+        secretName: certmanager-tls-voila-petezure.informaticslab.co.uk
+
+pangeo:
+  jupyterhub:
+    ingress:
+      hosts:
+      - petezure.informaticslab.co.uk
+      tls:
+        - hosts:
+          - petezure.informaticslab.co.uk
+          secretName: kubelego-tls-proxy-petezure.informaticslab.co.uk
+
+    auth:
+      github:
+        callbackUrl: "https://petezure.informaticslab.co.uk/hub/oauth_callback"

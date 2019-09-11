@@ -32,9 +32,6 @@ pangeo:
         type: ClusterIP
 
     hub:
-      # image:
-        # name: informaticslab/k8s-hub
-        # tag: 673f0f1
       extraConfig:
         customPodHook: |
           # c.JupyterHub.logo_file = '/usr/local/share/jupyterhub/static/custom/images/logo.png'
@@ -43,13 +40,18 @@ pangeo:
 
           c.KubeSpawner.profile_list = [
             {
-              'display_name': 'Informatics Lab Pangeo Notebook v0.7.0 (latest)',
-              'kubespawner_override': {'singleuser_image_spec': 'ourpangeo.azurecr.io/pangeo-notebook:0.7.0'},
+              'display_name': 'Pangeo Base Notebook (latest)',
+              'kubespawner_override': {'singleuser_image_spec': 'pangeo/base-notebook:2019.09.06'},
               'default': True
             },
             {
+              'display_name': 'Informatics Lab Pangeo Notebook v0.8.1 (latest)',
+              'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.8.1'},
+              'default': False
+            },
+            {
               'display_name': 'Informatics Lab Pangeo Notebook v0.6.9 (previous)',
-              'kubespawner_override': {'singleuser_image_spec': 'ourpangeo.azurecr.io/pangeo-notebook:0.6.9'},
+              'kubespawner_override': {'singleuser_image_spec': 'informaticslab/pangeo-notebook:0.6.9'},
               'default': False
             }
             ]
@@ -77,9 +79,9 @@ pangeo:
 
     singleuser:
       image:
-        name: ourpangeo.azurecr.io/pangeo-notebook
-        # name: informaticslab/pangeo-notebook
-        tag: 0.7.0
+        # name: ourpangeo.azurecr.io/pangeo-notebook
+        name: pangeo/base-notebook
+        tag: 2019.09.06
       imagePullSecret:
         enabled: false
         registry: OVERRIDEME
@@ -95,7 +97,7 @@ pangeo:
         limit: 16G
         guarantee: 2G
       nodeSelector:
-        agentpool: nodepool1
+        agentpool: petezurends
       extraEnv:
         # INTAKE_PATH: "/s3/informatics-pangeo-data/catalogs/weather:/s3/informatics-pangeo-data/catalogs/climate"
         EXAMPLES_GIT_URL: https://github.com/informatics-lab/example-notebooks.git
@@ -109,9 +111,9 @@ pangeo:
         dynamic:
           StorageClass: azurefile
         extraVolumes:
-        - name: scratch
-          persistentVolumeClaim:
-            claimName: azure-scratch
+        # - name: scratch
+        #   persistentVolumeClaim:
+        #     claimName: azure-scratch
         - name: daskernetes-config
           configMap:
             name: daskernetes-config
@@ -121,8 +123,8 @@ pangeo:
         extraVolumeMounts:
         # - name: s3
         #   mountPath: /s3
-        - name: scratch
-          mountPath: /scratch
+        # - name: scratch
+          # mountPath: /scratch
         - name: daskernetes-config
           mountPath: /etc/daskernetes
           readOnly: true

@@ -10,22 +10,24 @@ data:
     spec:
       restartPolicy: Never
       containers:
-        - name: dask-worker
-          image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
-          args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 6GB, --death-timeout, '60']
-          resources:
-            limits:
-              cpu: "1"
-              memory: 6G
-            requests:
-              cpu: "1"
-              memory: 6G
-          nodeSelector:
-            kubernetes.io/role: agent
-            beta.kubernetes.io/os: linux
-            type: virtual-kubelet
-          tolerations:
-          - key: virtual-kubelet.io/provider
-            operator: Exists
-          - key: azure.com/aci
-            effect: NoSchedule
+      - name: dask-worker
+        image: {{ .Values.pangeo.jupyterhub.singleuser.image.name }}:{{ .Values.pangeo.jupyterhub.singleuser.image.tag }}
+        args: [dask-worker, --nthreads, '1', --no-bokeh, --memory-limit, 6GB, --death-timeout, '60']
+        resources:
+          limits:
+            cpu: "1"
+            memory: 6G
+          requests:
+            cpu: "1"
+            memory: 6G
+      nodeSelector:
+        kubernetes.io/role: agent
+        beta.kubernetes.io/os: linux
+        type: virtual-kubelet
+      tolerations:
+      - key: virtual-kubelet.io/provider
+        operator: Equal
+        value: azure
+        effect: NoSchedule
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
